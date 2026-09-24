@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Resume</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #e9eef3;
+            color: #123f68;
+            line-height: 1.45;
+        }
+
+        .resume {
+            width: 1024px;
+            min-height: 1450px;
+            margin: 30px auto;
+            background: white;
+            display: grid;
+            grid-template-columns: 365px 1fr;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        /* =========================
+           LEFT SIDEBAR
+        ========================= */
+
+        .sidebar {
+            background: linear-gradient(180deg, #073557 0%, #062b49 100%);
+            color: white;
+            padding: 38px 38px 30px;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile img {
+            width: 205px;
+            height: 205px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            display: block;
+            margin: 0 auto 18px;
+        }
+
+        .profile h1 {
+            font-size: 39px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .profile p {
+            font-size: 20px;
+            color: #75c5f4;
+        }
+
+        .blue-line {
+            width: 108px;
+            height: 4px;
+            background: #65c4f5;
+            margin: 24px 0 25px;
+        }
+
+        /* Contact */
+
+        .contact {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            font-size: 17px;
+        }
+
+        .contact-icon {
+            width: 34px;
+            text-align: center;
+            font-size: 25px;
+            color: white;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        /* Sidebar headings */
+
+        .side-section {
+            margin-top: 25px;
+        }
+
+        .side-title {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .side-title-icon {
+            font-size: 27px;
+        }
+
+        .side-divider {
+            height: 2px;
+            background: #63bdf0;
+            margin-bottom: 17px;
+        }
+
+        .skill-heading {
+            font-size: 17px;
+            font-weight: bold;
+            margin: 15px 0 9px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .skill {
+            background: linear-gradient(135deg, #1d5a87, #2b6d9d);
+            padding: 7px 17px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* Languages */
+
+        .languages-list {
+            position: relative;
+            margin-left: 5px;
+        }
+
+        .language {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 16px;
+        }
+
+        .language::before {
+            content: "";
+            position: absolute;
+            left: 1px;
+            top: 5px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #65c4f5;
+        }
+
+        .language::after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 18px;
+            height: 39px;
+            border-left: 1px solid rgba(101, 196, 245, 0.35);
+        }
+
+        .language:last-child::after {
+            display: none;
+        }
+
+        .language-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .language-level {
+            font-size: 15px;
+            color: #91c8e8;
+        }
+
+        /* Quote */
+
+        .quote {
+            border-top: 2px solid #357aa7;
+            margin-top: 27px;
+            padding: 25px 10px;
+            color: #9bd6f7;
+            font-size: 23px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .quote-line {
+            width: 62px;
+            height: 4px;
+            background: #65c4f5;
+            margin-top: 18px;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main {
+            padding: 33px 30px 45px;
+            background: #fff;
+        }
+
+        .main-header {
+            margin-bottom: 28px;
+        }
+
+        .main-header h1 {
+            color: #073557;
+            font-size: 45px;
+            line-height: 1.1;
+            margin-bottom: 5px;
+        }
+
+        .main-header p {
+            color: #2a638e;
+            font-size: 27px;
+            font-weight: 500;
+        }
+
+        /* Main Sections */
+
+        .section {
+            margin-bottom: 26px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 13px;
+        }
+
+        .section-icon {
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #073f6b;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+        }
+
+        .section-title {
+            flex: 1;
+            color: #073f6b;
+            font-size: 21px;
+            font-weight: bold;
+            border-bottom: 2px solid #62bde9;
+            padding-bottom: 7px;
+        }
+
+        .objective {
+            font-size: 17px;
+            color: #1c3040;
+            text-align: left;
+        }
+
+        /* Education */
+
+        .timeline {
+            position: relative;
+            margin-left: 10px;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 0;
+            width: 2px;
+            background: #62bde9;
+        }
+
+        .education-item {
+            position: relative;
+            margin-bottom: 23px;
+        }
+
+        .education-item::before {
+            content: "";
+            position: absolute;
+            left: -30px;
+            top: 6px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #62bde9;
+        }
+
+        .education-title {
+            font-size: 17px;
+            font-weight: bold;
+            color: #103f68;
+            margin-bottom: 3px;
+        }
+
+        .education-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 15px;
+            color: #184f7d;
+        }
+
+        .education-date {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        /* Projects */
+
+        .project {
+            display: grid;
+            grid-template-columns: 65px 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .project-icon {
+            width: 58px;
+            height: 58px;
+            background: #e3f1fa;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 27px;
+            color: #073f6b;
+        }
+
+        .project-content {
+            position: relative;
+        }
+
+        .project-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 7px;
+        }
+
+        .project-name {
+            font-size: 17px;
+            font-weight: bold;
+            color: #103f68;
+        }
+
+        .project-tech {
+            font-size: 15px;
+            color: #155a89;
+            white-space: nowrap;
+        }
+
+        .project-content ul {
+            padding-left: 17px;
+            color: #164d77;
+            font-size: 15px;
+        }
+
+        .project-content li {
+            margin-bottom: 3px;
+        }
+
+        /* Certifications / Achievements */
+
+        .simple-list {
+            margin-left: 78px;
+            padding-left: 17px;
+            color: #164d77;
+            font-size: 15px;
+        }
+
+        .simple-list li {
+            margin-bottom: 7px;
+        }
+
+        /* Activities */
+
+        .activity {
+            margin-left: 78px;
+            font-size: 15px;
+            color: #164d77;
+        }
+
+        .activity strong {
+            color: #103f68;
+        }
+
+        /* Bottom Languages */
+
+        .main-languages {
+            margin-left: 78px;
+            color: #164d77;
+            font-size: 16px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .resume {
+                width: 100%;
+                margin: 0;
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                padding: 35px 25px;
+            }
+
+            .main {
+                padding: 30px 25px;
+            }
+
+            .profile img {
+                width: 170px;
+                height: 170px;
+            }
+
+            .profile h1 {
+                font-size: 34px;
+            }
+
+            .main-header h1 {
+                font-size: 38px;
+            }
+
+            .main-header p {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .education-details {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .education-date {
+                text-align: left;
+            }
+
+            .project {
+                grid-template-columns: 1fr;
+            }
+
+            .project-heading {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .project-tech {
+                white-space: normal;
+            }
+
+            .simple-list,
+            .activity,
+            .main-languages {
+                margin-left: 0;
+            }
+        }
+
+        /* =========================
+           PRINT
+        ========================= */
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .resume {
+                margin: 0;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="resume">
+
+    <!-- ================= LEFT SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="profile">
+            <!-- Replace profile.jpg with your actual photo -->
+            <img src="profile.jpg" alt="Profile Photo">
+
+            <h1>Rachana S</h1>
+            <p>Computer Science Engineering Student</p>
+        </div>
+
+        <div class="blue-line"></div>
+
+        <!-- Contact -->
+        <div class="contact">
+
+            <div class="contact-item">
+                <div class="contact-icon">☎</div>
+                <a href="tel:+9189xxxxxx17">+91 89xxx xxx17 </a>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">✉</div>
+                <a href="mailto:yourname@gmail.com">
+                    yourname@gmail.com
+                </a>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">●</div>
+                <span>Bengaluru, India</span>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">in</div>
+                <a href="#">linkedin.com/in/yourname</a>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-icon">◉</div>
+                <a href="#">github.com/yourname</a>
+            </div>
+
+        </div>
+
+
+        <!-- Skills -->
+
+        <div class="side-section">
+
+            <div class="side-title">
+                <span class="side-title-icon">⚙</span>
+                <span>SKILLS</span>
+            </div>
+
+            <div class="side-divider"></div>
+
+            <div class="skill-heading">Technical Skills</div>
+
+            <div class="skills">
+                <span class="skill">C</span>
+                <span class="skill">C++</span>
+                <span class="skill">Java</span>
+                <span class="skill">Python</span>
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Data Structures</span>
+                <span class="skill">OOP</span>
+            </div>
+
+            <div class="skill-heading">Tools & Technologies</div>
+
+            <div class="skills">
+                <span class="skill">VS Code</span>
+                <span class="skill">Git</span>
+                <span class="skill">GitHub</span>
+                <span class="skill">Figma</span>
+                <span class="skill">Postman</span>
+                <span class="skill">MySQL</span>
+            </div>
+
+            <div class="skill-heading">Soft Skills</div>
+
+            <div class="skills">
+                <span class="skill">Communication</span>
+                <span class="skill">Teamwork</span>
+                <span class="skill">Problem Solving</span>
+                <span class="skill">Time Management</span>
+            </div>
+
+        </div>
+
+
+        <!-- Languages -->
+
+        <div class="side-section">
+
+            <div class="side-title">
+                <span class="side-title-icon">◎</span>
+                <span>LANGUAGES</span>
+            </div>
+
+            <div class="side-divider"></div>
+
+            <div class="languages-list">
+
+                <div class="language">
+                    <div class="language-name">English</div>
+                    <div class="language-level">Fluent</div>
+                </div>
+
+                <div class="language">
+                    <div class="language-name">Hindi</div>
+                    <div class="language-level">Fluent</div>
+                </div>
+
+                <div class="language">
+                    <div class="language-name">Kannada</div>
+                    <div class="language-level">Native</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Quote -->
+
+        <div class="quote">
+            “ Better Code<br>
+            &nbsp;&nbsp;Brighter<br>
+            &nbsp;&nbsp;Future ”
+            
+            <div class="quote-line"></div>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main">
+
+        <!-- Header -->
+
+        <header class="main-header">
+            <h1>Rachana S</h1>
+            <p>Computer Science Engineering Student </p>
+        </header>
+
+
+        <!-- Career Objective -->
+
+        <section class="section">
+
+            <div class="section-header">
+                <div class="section-icon">🧑‍💻</div>
+                <div class="section-title">CAREER OBJECTIVE</div>
+            </div>
+
+            <p class="objective">
+                Motivated and dedicated Computer Science student with a passion for
+                technology and problem-solving. Currently pursuing B.E. in Computer
+                Science & Engineering (5th Semester) and a completed Diploma in CSE.
+                Looking for an opportunity to apply my skills in real-world projects,
+                learn from experienced professionals and contribute to innovative
+                solutions in the tech industry.
+            </p>
+
+        </section>
+
+
+        <!-- Education -->
+
+        <section class="section">
+
+            <div class="section-header">
+                <div class="section-icon">🎓</div>
+                <div class="section-title">EDUCATION</div>
+            </div>
+
+            <div class="timeline">
+
+                <div class="education-item">
+
+                    <div class="education-title">
+                        Bachelor of Engineering (B.E.) – Computer Science & Engineering
+                    </div>
+
+                    <div class="education-details">
+                        <div>
+                            Bangalore Institute Of Technology
+                            <br>
+                            CGPA (till 4th Semester): 7.68 / 10
+                        </div>
+
+                        <div class="education-date">
+                            2026 – Present<br>
+                            (5th Semester)
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="education-item">
+
+                    <div class="education-title">
+                        Diploma in Computer Science & Engineering
+                    </div>
+
+                    <div class="education-details">
+
+                        <div>
+                            Shanthiniketan Polytechnic College
+                            <br>
+                            Percentage / CGPA: 92.20
+                        </div>
+
+                        <div class="education-date">
+                            2022 – 2025
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Projects -->
+
+        <section class="section">
+
+            <div class="section-header">
+                <div class="section-icon">🎗️</div>
+                <div class="section-title">PROJECTS</div>
+            </div>
+
+
+            <!-- Project 1 -->
+
+            <div class="project">
+
+                <div class="project-icon">▣</div>
+
+                <div class="project-content">
+
+                    <div class="project-heading">
+                        <div class="project-name">
+                            Phishing Page Cloner and Detection.
+                        </div>
+
+                        <div class="project-tech">
+                            HTML | CSS | Python
+                        </div>
+                    </div>
+
+                    <ul>
+                        <li>
+                            <p>
+    Developed a web-based cybersecurity project to detect phishing websites
+    and analyze suspicious webpage characteristics. The project demonstrates
+    phishing-page cloning concepts for security awareness and detection.
+</p>
+                        </li>
+
+                        <li>
+                            Implemented smooth navigation and modern UI/UX design.
+                        </li>
+
+                        <li>
+                            Optimized for both desktop and mobile devices.
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- Project 2 -->
+
+            <div class="project">
+
+                <div class="project-icon">▤</div>
+
+                <div class="project-content">
+
+                    <div class="project-heading">
+
+                        <div class="project-name">
+                            Event Management System
+                        </div>
+
+                        <div class="project-tech">
+                            Python | MySQL
+                        </div>
+
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            <p>
+    Developed an event management system to create, manage, and organize
+    events efficiently. The system allows users to view event details,
+    manage registrations, and maintain event information.
+    </p>
+                        </li>
+
+                        <li>
+                            Implemented CRUD operations and database integration.
+                        </li>
+
+                        <li>
+                            Optimized a simple and user-friendly interface.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+                                <!-- Certifications -->
+        
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">🎖️</div>
+                <div class="section-title">CERTIFICATIONS</div>
+            </div>
+        <ul class="simple-list">
+            <li>
+                Create a Lead Generation Messenger Chatbot using Chatfuel Certification - Great Learning (2024)
+            </li>
+             <li>
+                Google Ads for Beginners Certification - (2024)
+            </li>
+            <li>
+                Data Analysis with Python Certification - (2024)
+            </li>
+        </ul>
+
+        </section>
+<!-- Achievements -->
+ <section class="section">
+    <div class="section-header">
+        <div class="section-icon">🏆
+    </div>
+    <div class="section-title">ACHIEVEMENTS</div>
+    </div>
+    <ul class="simple-list">
+            <li>
+                Completed Diploma in CSE with distinction.
+            </li>
+            <li>
+                Participated in college coding events and hackathons. 
+            </li>
+            <li>Built and deployed 2+ personal projects.</li>
+        </ul>
+ </section>
+ <!-- Positions -->
+  <section class="section">
+    <div class="section-header">
+        <div class="section-icon">📈
+    </div>
+    <div class="section-title">POSITIONS OF RESPONSIBILITY / ACTIVITIES</div>
+    </div>
+    <div class="activity">
+        <ul>
+    <li><strong>Member of Coding Club</strong> - Organized workshops and coding sessions for juniors.</li>
+    
+    <li>Participated in coding competitions and technical events.</li>
+    <li>Attended workshops and seminars related to technology and cybersecurity.</li>
+    <li>Participated in college-level project exhibitions.</li>
+    <li>Contributed to team-based technical projects and presentations.</li>
+    <li>Participated in extracurricular and cultural activities.</li>
+    <li>Volunteered in college events and departmental activities.</li>
+</ul>
+    </div>
+    
+ </section>
+ <!-- Languages -->
+  <section class="section">
+    <div class="section-header">
+        <div class="section-icon">🗨️</div>
+        <div class="section-title">LANGUAGES</div>
+        <div class="main-languages">
+            English &nbsp; | &nbsp; 
+            Hindi &nbsp; | &nbsp; Kannada
+        </div>
+  </section>
+  </main>
+  </div>
+  </body>
+  </html>
