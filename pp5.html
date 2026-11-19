@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mobile Calculator</title>
+
+<style>
+body {
+    background: #201f21;
+    font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.student-details {
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.student-details h2 {
+    color: orange;
+}
+
+.calculator {
+    background: black;
+    width: 320px;
+    padding: 20px;
+    border-radius: 25px;
+}
+
+#display {
+    width: 100%;
+    height: 100px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: 32px;
+    text-align: right;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    background: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.operator {
+    background: orange;
+}
+
+.special {
+    background: #999;
+    color: black;
+}
+
+.equal {
+    background: orange;
+    grid-column: span 4;
+    border-radius: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Student Details -->
+<div class="student-details">
+    <h3>Name: Rachana S</h3>
+    <h3>USN: 1BI25CS419</h3>
+</div>
+
+<!-- Calculator -->
+<div class="calculator">
+
+<input type="text" id="display" value="0" readonly>
+
+<div class="buttons">
+
+<button class="special" onclick="clearDisplay()">AC</button>
+<button class="special" onclick="deleteLast()">DEL</button>
+<button class="special" onclick="add('%')">%</button>
+<button class="operator" onclick="add('/')">÷</button>
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="operator" onclick="add('*')">×</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="operator" onclick="add('-')">−</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="operator" onclick="add('+')">+</button>
+
+<button onclick="square()">x²</button>
+<button onclick="add('0')">0</button>
+<button onclick="sqrt()">√</button>
+<button class="operator" onclick="add('^')">xʸ</button>
+
+<button onclick="add('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+
+</div>
+</div>
+
+<script>
+
+let display = document.getElementById("display");
+let expression = "";
+let answerShown = false;
+
+function add(value) {
+
+    if (display.value === "Error") {
+        expression = "";
+    }
+
+    if (answerShown) {
+        if ("+-*/%^".includes(value)) {
+            expression = display.value;
+        } else {
+            expression = "";
+        }
+        answerShown = false;
+    }
+
+    if ("+-*/%^".includes(value)) {
+        if (expression === "" && value !== "-") return;
+
+        if ("+-*/%^".includes(expression.slice(-1))) {
+            expression = expression.slice(0, -1);
+        }
+    }
+
+    expression += value;
+    display.value = expression;
+}
+
+function calculate() {
+    try {
+        if (expression === "" ||
+            /[+\-*/%^.]$/.test(expression)) return;
+
+        let exp = expression.replace(/\^/g, "**");
+
+        if (!/^[0-9+\-*/%.() ]+$/.test(exp)) {
+            throw new Error();
+        }
+
+        let result = Function(
+            '"use strict"; return (' + exp + ')'
+        )();
+
+        if (!Number.isFinite(result)) {
+            throw new Error();
+        }
+
+        display.value = Number(result.toPrecision(12));
+        expression = display.value;
+        answerShown = true;
+
+    } catch {
+        display.value = "Error";
+        expression = "";
+        answerShown = true;
+    }
+}
+
+function square() {
+    if (answerShown) expression = display.value;
+
+    let n = Number(expression);
+
+    if (expression === "" || !Number.isFinite(n)) return;
+
+    expression = String(n * n);
+    display.value = expression;
+    answerShown = true;
+}
+
+function sqrt() {
+    if (answerShown) expression = display.value;
+
+    let n = Number(expression);
+
+    if (expression === "" || !Number.isFinite(n)) return;
+
+    if (n < 0) {
+        display.value = "Error";
+        expression = "";
+    } else {
+        expression = String(Math.sqrt(n));
+        display.value = expression;
+    }
+
+    answerShown = true;
+}
+
+function clearDisplay() {
+    expression = "";
+    display.value = "0";
+    answerShown = false;
+}
+
+function deleteLast() {
+    if (answerShown) {
+        clearDisplay();
+        return;
+    }
+
+    expression = expression.slice(0, -1);
+    display.value = expression || "0";
+}
+
+</script>
+
+</body>
+</html>
